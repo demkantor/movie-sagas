@@ -12,8 +12,18 @@ class MovieDisplay extends Component {
     this.props.dispatch({ type: "GET_MOVIES" });
   };
 
-  moreInfo = () => {
-    console.log("in moreInfo");
+  moreInfo = (movie) => {
+    console.log("in moreInfo", movie);
+    this.props.history.push({
+      pathname: '/details',
+      state: {
+        id: movie.id,
+        title: movie.title,
+        poster: movie.poster,
+        hero: movie.hero_poster,
+        description: movie.description
+      }
+    });
   };
 
   addFav = () => {
@@ -38,13 +48,13 @@ class MovieDisplay extends Component {
               <div className="display">
                 {this.props.reduxState.movieReducer.map(movie => (
                   <div className="poster" key={movie.id}>
-                    <img alt="poster" src={movie.poster} />
+                    <img alt="poster" src={movie.poster} width="185px" height="275px"/>
                     <br />
-                    <div className="title">
-                      {movie.title}
+                    <div className="titleT">
+                      {/* {movie.title} */}
                       <br/>
                       <br />
-                      <button onClick={() => this.moreInfo()}>
+                      <button onClick={() => this.moreInfo(movie)}>
                         More Information
                       </button>
                       <br />
