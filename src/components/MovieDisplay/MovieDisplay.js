@@ -34,11 +34,12 @@ class MovieDisplay extends Component {
   render() {
     return (
       <div className="movieDisplay">
+        <img className="heroImage" alt="hero" src="/images/hero-avatar.jpg" width="1600px"/>
         {this.props.reduxState.movieReducer && (
           <div className="heroMain">
             {this.props.reduxState.movieReducer.map(hero => (
               <div className="heroDisplay" key={hero.id}>
-                <img className="heroImage" alt="hero" src={hero.hero_poster} />
+                {/* <img className="heroImage" alt="hero" src={hero.hero_poster} width="1600px"/> */}
                 </div>
                 ))}
               </div>

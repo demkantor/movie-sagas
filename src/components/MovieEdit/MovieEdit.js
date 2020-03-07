@@ -4,14 +4,31 @@ import {Link} from 'react-router-dom';
 
 class MovieEdit extends Component {
 
+    state={
+        edits: {
+            title: '',
+            description: ''
+        }
+    }
     
-  
+  editThis=(text)=>{
+      console.log('text to change: ', text)
+  }
+
+  handleChangeFor=(propertyName, event)=>{
+    this.setState({
+        edits: {
+          ...this.state.edits,
+          [propertyName]: event.target.value
+        }
+      })
+  }
     
   render() {
-    console.log('in edit', this.props.location.state)
+    // console.log('in edit', this.props.location.state)
     return (
       <div className="movieEdit">
-        <Link to="/" className="displayLink">Home</Link>
+        <Link to="/" className="displayLink">Back Home</Link>
         <h1 className="title">
             Curent Title: {this.props.location.state.title}
         </h1>
@@ -22,10 +39,13 @@ class MovieEdit extends Component {
         <div className="descriptionEdit">
             {this.props.location.state.description}
         </div>
+        <button className="editButton" onClick={() => this.editThis(this.state)}>
+            Submit Edit
+        </button>
         <form className="edit">
-           <input/>
-           <br/>
-           <input/>
+            <input placeholder="Edit Title" onChange={(event) => this.handleChangeFor('title', event)}/>
+                 <br/>
+            <input className="largeEdit" placeholder="Edit Description" onChange={(event) => this.handleChangeFor('description', event)}/>
        </form>
       </div>
     );

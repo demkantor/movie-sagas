@@ -24,14 +24,13 @@ class MovieDetail extends Component {
       console.log('in details', this.props.location.state)
     return (
       <div className="moviedetail">
-        <Link to="/" className="displayLink">Home</Link>
-        <Link to="/edit" className="displayLink">Edit Descritption</Link>
+        <Link to="/" className="displayLink">Back Home</Link>
         <button onClick={() => this.editThis(this.props.location.state)}>
             Edit Details
         </button>
         <h1>{this.props.location.state.title}</h1>
         <div className="heroDisplay" key={this.props.location.state.id}>
-            <img className="heroImage" alt="hero" src={this.props.location.state.hero} />
+            <img className="heroImage" alt="hero" src={this.props.location.state.hero} width="1600px"/>
         </div>
         <div className="description">
             {this.props.location.state.description}

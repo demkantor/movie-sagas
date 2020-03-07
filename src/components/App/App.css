@@ -78,6 +78,23 @@ button:hover{
   color: rgb(190, 170, 170);
 }
 
+.largeEdit{
+  width: 600px;
+  height: 80px;
+}
+
+input{
+  margin: 10px;
+}
+
+input:focus {
+  border: 2px solid rgb(196, 1, 1);
+}
+
+.editButton{
+  margin-left: 10px;
+}
+
 .hero {
   @media screen and (max-width: 767px) {
     max-width: 536px;
