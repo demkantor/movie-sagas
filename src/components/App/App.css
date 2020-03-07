@@ -1,9 +1,67 @@
-/* $small: 589px;
-$large: 1023px; */
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Patua+One');
 
 html, body {
   height: 100%;
   background: linear-gradient(to bottom right,#7f3737,#2a2122);
+  font-family: 'Comfortaa', Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+.display {
+  -webkit-overflow-scrolling: touch;
+}
+.header{
+  text-align: center;
+  height: 30px;
+  letter-spacing: .4em;
+}
+
+.display{
+  scroll-behavior: smooth;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+}
+
+.poster {
+  flex: 0 0 auto;
+  width: 200px;
+  padding: 5px;
+  margin: 5px;
+}
+
+button{
+  /* font-family: 'Patua One', sans-serif; */
+  letter-spacing: .1em;
+  color: rgb(190, 170, 170);
+  background-color: #1f0f0f;
+  padding: 8px;
+  border: none;
+  font-size: 18px;
+}
+
+button:hover{
+  background-color: #1f0f0f93;
+  color: rgba(190, 170, 170, 0.808);
+}
+
+.title{
+  font-size: large;
+  text-align: center;
+}
+
+.title:hover{
+  font-size: x-large;
+  color: rgb(190, 170, 170);
+}
+
+.heroImage{
+  justify-content: center;
+  max-width: 95vw;
+  margin: 20px;
 }
 
 .hero {

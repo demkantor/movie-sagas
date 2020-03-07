@@ -24,16 +24,25 @@ class MovieDisplay extends Component {
   render() {
     return (
       <div className="movieDisplay">
-        <div className="container">
+        {this.props.reduxState.movieReducer && (
+          <div className="heroMain">
+            {this.props.reduxState.movieReducer.map(hero => (
+              <div className="heroDisplay" key={hero.id}>
+                <img className="heroImage" alt="hero" src={hero.hero_poster} />
+                </div>
+                ))}
+              </div>
+            )}
           <div>
             {this.props.reduxState.movieReducer && (
               <div className="display">
                 {this.props.reduxState.movieReducer.map(movie => (
-                  <div className="gif" key={movie.id}>
-                    <img alt="title" src={movie.poster} />
+                  <div className="poster" key={movie.id}>
+                    <img alt="poster" src={movie.poster} />
                     <br />
                     <div className="title">
                       {movie.title}
+                      <br/>
                       <br />
                       <button onClick={() => this.moreInfo()}>
                         More Information
@@ -50,7 +59,6 @@ class MovieDisplay extends Component {
               </div>
             )}
           </div>
-        </div>
       </div>
     );
   }
