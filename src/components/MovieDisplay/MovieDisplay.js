@@ -21,15 +21,21 @@ class MovieDisplay extends Component {
         title: movie.title,
         poster: movie.poster,
         hero: movie.hero_poster,
-        description: movie.description
+        description: movie.description,
+        favorited: movie.favorited
       }
     });
   };
 
-  addFav = () => {
-    console.log("in addFav");
+  addFav = (thisOne) => {
+    console.log("in addFav", thisOne);
+    this.props.dispatch({ type: "EDIT_FAV", payload: {id: thisOne, bool: true }});
   };
  
+  removeFav = (thisOne) => {
+    console.log("in removeFav", thisOne);
+    this.props.dispatch({ type: "EDIT_FAV", payload: {id: thisOne, bool: false }});
+  };
   
   render() {
     return (
@@ -60,9 +66,16 @@ class MovieDisplay extends Component {
                       </button>
                       <br />
                       <br></br>
-                      <button onClick={() => this.addFav()}>
-                        Add To Favorites
-                      </button>
+                        {movie.favorited === false &&
+                        <button onClick={() => this.addFav(movie.id)}>
+                          Add To Favorites
+                        </button>
+                        }
+                        {movie.favorited === true &&
+                        <button onClick={() => this.removeFav(movie.id)}>
+                          Remove From Favorites
+                        </button>
+                        }
                       <br></br>
                     </div>
                   </div>
