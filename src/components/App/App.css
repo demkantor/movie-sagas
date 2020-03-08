@@ -33,6 +33,10 @@ html, body {
   margin: 5px;
 }
 
+.posterDisplay{
+  margin-left: 10px;
+}
+
 button{
   /* font-family: 'Patua One', sans-serif; */
   letter-spacing: .1em;
@@ -48,6 +52,10 @@ button:hover{
   color: rgba(190, 170, 170, 0.808);
 }
 
+.homeButton{
+  margin-left: 20px;
+}
+
 .title{
   font-size: x-large;
   text-align: center;
@@ -56,6 +64,10 @@ button:hover{
 .title:hover{
   font-size: x-large;
   color: rgb(190, 170, 170);
+}
+
+.titleDetail{
+  margin-left: 20px;
 }
 
 .heroImage{
@@ -67,6 +79,7 @@ button:hover{
 .description{
   font-size: larger;
   padding: 20px;
+  
 }
 
 .descriptionEdit{
@@ -84,7 +97,7 @@ button:hover{
 }
 
 input{
-  margin: 10px;
+  margin: 20px;
 }
 
 input:focus {
@@ -92,7 +105,7 @@ input:focus {
 }
 
 .editButton{
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .adminIcon{

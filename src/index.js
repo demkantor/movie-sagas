@@ -15,13 +15,23 @@ import createSagaMiddleware from 'redux-saga';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovie);
-
+    yield takeEvery('EDIT_TITLE', editTitle)
 }
 
 function* getMovie(){
     const filmList = yield axios.get('/movie');
     console.log('this saga came from movie/GET bringing: ', filmList.data)
     yield put({type: 'SET_MOVIES', payload: filmList.data})
+}
+
+function* editTitle(edit){
+    console.log('this saga came from movie/PUT, sending: ', edit.payload);
+  try {
+    yield axios.put(`/movie/${edit.payload.sendId}`, edit.payload);
+    yield put({type: 'GET_MOVIES'});
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // Create sagaMiddleware

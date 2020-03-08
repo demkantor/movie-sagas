@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
 import '../App/App.css';
-import {Link} from 'react-router-dom';
 
 
 class Admin extends Component {
+
+  goHome=()=>{
+    this.props.history.push('/')
+  }
   
   render() {
     return (
       <div className="admin">
-           <Link to="/" className="displayLink">Go Home</Link>
+        <button className="homeButton" onClick={this.goHome}>
+            Home
+        </button>
       </div>
     );
   }
