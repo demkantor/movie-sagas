@@ -164,6 +164,37 @@ margin: 20px;
   width: 60%;
 }
 
+.edit{
+  margin: 0px;
+  width: 80%;
+}
+
+.editColumnOne{
+  float: left;
+  margin: 0px;
+  width: 33%;
+}
+
+.editColumnTwo{
+  float: left;
+  margin: 0px;
+  width: 33%;
+}
+
+.editColumnThree{
+  float: left;
+  margin: 0px;
+  width: 33%;
+}
+
+.editBelow{
+  float: left;
+}
+
+.genreButton{
+  margin: 20px;
+}
+
 .hero {
   @media screen and (max-width: 767px) {
     max-width: 536px;

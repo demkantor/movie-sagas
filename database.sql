@@ -55,3 +55,7 @@ VALUES
 ('Science Fiction'),
 ('Space-Opera'),
 ('Superhero');
+
+
+INSERT INTO "movies_genres" ("movies_id", "genres_id") 
+VALUES (5, 6), (4,  4), (4, 2);

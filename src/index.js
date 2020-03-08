@@ -18,6 +18,10 @@ function* rootSaga() {
     yield takeEvery('EDIT_TITLE', editTitle);
     yield takeEvery('EDIT_FAV', editFav);
     yield takeEvery('GET_GENRES', getGenres);
+    yield takeEvery('ADD_GENRES', addGenres);
+    yield takeEvery('REMOVE_GENRE', removeGenre);
+    yield takeEvery('ATTACH_GENRE', attachGenre);
+
 }
 
 function* getMovie(){
@@ -52,7 +56,37 @@ function* editFav(edit){
   }
 }
 
-// Create sagaMiddleware
+function* addGenres(genre) {
+    console.log('in saga /genre POST', genre.payload);
+    try {
+        yield axios.post('/genre', genre.payload);
+        yield put({type: 'GET_GENRES'})
+    } catch(error){
+        console.log(error);
+    }
+}
+
+function* removeGenre(remove) {
+    console.log("in saga /genre/delete with: ", remove.payload);
+    try {
+        yield axios.delete(`/genre/${remove.payload}`);
+        yield put({type: 'GET_GENRES'})
+    } catch(error){
+        console.log(error);
+    }
+}
+
+function* attachGenre(edit){
+    console.log('this saga came from /genre/movies/PUT, sending: ', edit.payload.newGenreId.sendGenre.newGenre, "and", edit.payload.newGenreId.sendMovie);
+  try {
+    yield axios.put(`/genre/movies/${edit.payload.newGenreId.sendMovie}`, edit.payload);
+    yield put({type: 'GET_MOVIES'});
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// Create sagaMiddlewareWelcome to the super secert awesome admin page
 const sagaMiddleware = createSagaMiddleware();
 
 // Used to store movies returned from the server

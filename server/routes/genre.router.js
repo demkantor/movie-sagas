@@ -16,43 +16,38 @@ router.get('/', (req, res) => {
       });
 });
 
-// add a new favorite 
+// add a new genre
 router.post('/', (req, res) => {
   console.log("in server /genre/POST with: ", req.body);
-//   const newFavorite = req.body;
-//   const queryText = `INSERT INTO favorites ("title", "url", "category_id")
-//                     VALUES ($1, $2, $3)`;
-//   const queryValues = [
-//     newFavorite.sendTitle,
-//     newFavorite.sendUrl,
-//     newFavorite.sendCat
-//   ];
-//   pool.query(queryText, queryValues)
-//     .then(() => { res.sendStatus(201); })
-//     .catch((err) => {
-//       console.log('Error completing SELECT favorite query', err);
-//       res.sendStatus(500);
-//     });
+  const genre = req.body.newGenre;
+  const queryText = `INSERT INTO "genres" ("name") VALUES ($1)`;
+  pool.query(queryText, [genre])
+    .then(() => { res.sendStatus(201); })
+    .catch((err) => {
+      console.log('Error completing new genre post', err);
+      res.sendStatus(500);
+    });
 });
 
 
-// delete a favorite
+// delete a genre
 router.delete('/:id', (req, res) => {
   console.log("in server /genre/DELETE with: ", req.params.id);
-//   const queryText = "DELETE FROM favorites WHERE id=$1";
-//   pool.query(queryText, [req.params.id])
-//   .then(() => {
-//     res.sendStatus(200);
-//   }).catch(err => {
-//       console.log("Error deleting favorite", err);
-//       res.sendStatus(500);
-//     });
+   const queryText = `DELETE FROM "genres" WHERE id=$1`;
+  pool.query(queryText, [Number(req.params.id)])
+  .then(() => {
+    res.sendStatus(200);
+  }).catch(err => {
+      console.log("Error deleting genre", err);
+      res.sendStatus(500);
+    });
 });
 
-router.put('/title/:id', (req, res) => {
+//link a genre and movie together
+router.put('/movies/:id', (req, res) => {
   console.log('IN /genre/PUT  WITH:', req.body, req.params);
-//   console.log('r.b.change: ', req.body.change.edits.title, "r.p.id :", req.params.id);
-//   const queryText = `UPDATE "movies" SET "title" =$1, "description" =$2 WHERE id=$3;`;
+  console.log('movie id to change: ', req.body.newGenreId.sendMovie, "genre id to give it :", req.body.newGenreId.sendGenre.newGenre);
+//   const queryText = `UPDATE "movies_genres" SET "title" =$1, "description" =$2 WHERE id=$3;`;
 //    const queryValues = [req.body.change.edits.title, req.body.change.edits.description, req.params.id]
 //   pool.query(queryText, queryValues)
 //     .then(() => {

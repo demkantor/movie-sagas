@@ -8,6 +8,10 @@ import {connect} from 'react-redux';
 
 class Admin extends Component {
 
+  state={
+    newGenre: ''
+  }
+
   componentDidMount=()=>{
     this.getGenres();
   }
@@ -17,15 +21,26 @@ class Admin extends Component {
   }
 
   goHome=()=>{
-    this.props.history.push('/')
+    this.props.history.push('/');
   }
 
   removeMe=(id)=>{
-    console.log('remove me', id)
+    this.props.dispatch({type: 'REMOVE_GENRE', payload: id});
   }
   
+  handleChange=(genre, event)=>{
+    this.setState({
+      newGenre: event.target.value
+    })
+  }
+
+  addGenre=(event)=>{
+    event.preventDefault();
+    this.props.dispatch({type: 'ADD_GENRES', payload: this.state});
+  }
+
   render() {
-    console.log('in admin with genres: ', this.props.reduxState.genreReducer);
+    // console.log('in admin with genres: ', this.props.reduxState.genreReducer);
     return (
       <div className="admin">
         <button className="homeButton" onClick={this.goHome}>
@@ -55,8 +70,8 @@ class Admin extends Component {
         </div>
         <div className="adminColumnTwo">
           <form>
-            <input placeholder="Add new Genre"/>
-            <button onClick={this.addGenre}>
+            <input placeholder="Add new Genre" onChange={(event) => this.handleChange('genre', event)} />
+            <button onClick={(event)=>this.addGenre(event)}>
              Add Genre
             </button>
           </form>
