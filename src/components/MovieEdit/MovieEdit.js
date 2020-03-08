@@ -35,7 +35,7 @@ class MovieEdit extends Component {
 
     removeMe=(row)=>{
       this.props.dispatch({type: 'REMOVE_COMBO', payload: row});
-      window.location.reload();
+      this.getSpecifics();
     }
 
     getSpecifics=()=>{
@@ -53,7 +53,7 @@ class MovieEdit extends Component {
           }
         }
       });
-      window.location.reload();
+      this.getSpecifics();
     }
     
     editThis=(text, id)=>{

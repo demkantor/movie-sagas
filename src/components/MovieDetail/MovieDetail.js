@@ -31,6 +31,9 @@ class MovieDetail extends Component {
         <button onClick={() => this.editThis(this.props.location.state)}>
             Edit Details
         </button>
+        {this.props.location.state.favorited &&
+          <img className="favorited" alt="star" src='/images/star.png'/>
+          }
         <h1 className="titleDetail">{this.props.location.state.title}</h1>
         <div className="heroDisplay" key={this.props.location.state.id}>
             <img className="heroImage" alt="hero" src={this.props.location.state.hero} width="1000px"/>
