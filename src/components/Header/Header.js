@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import '../App/App.css';
+import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
 
 class Header extends Component {
   
 
-  adminLogIn=()=>{
+  adminLogIn=(history)=>{
     swal({
       content: {
         element: "input",
@@ -31,23 +32,22 @@ class Header extends Component {
                 swal("sorry, wrong username or password");
               }else{
                 swal("Welcome!", "We have been waiting for you!", "success");
-                this.props.history.push('/admin');
+                history.push('/admin');
               }
           });
       }
     })  
   }
-    
+
   render() {
-    console.log('in header', this.props.history)
     return (
       <div className="header">
        <span><h1>Next Flicks</h1>
-        <img src="/images/admin.png" alt="admin" className="adminIcon" onClick={this.adminLogIn} />
+        <img src="/images/admin.png" alt="admin" className="adminIcon" onClick={()=>this.adminLogIn(this.props.history)} />
         </span> 
       </div>
     );
   }
 }
 
-export default Header;
+export default withRouter(Header);
