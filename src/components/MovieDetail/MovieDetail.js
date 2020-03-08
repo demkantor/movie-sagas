@@ -30,7 +30,7 @@ class MovieDetail extends Component {
         </button>
         <h1>{this.props.location.state.title}</h1>
         <div className="heroDisplay" key={this.props.location.state.id}>
-            <img className="heroImage" alt="hero" src={this.props.location.state.hero} width="1600px"/>
+            <img className="heroImage" alt="hero" src={this.props.location.state.hero} width="1000px"/>
         </div>
         <div className="description">
             {this.props.location.state.description}
