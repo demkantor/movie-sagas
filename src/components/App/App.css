@@ -195,6 +195,20 @@ margin: 20px;
   margin: 20px;
 }
 
+select{
+  font-size: large;
+  color: rgb(190, 170, 170);
+  background-color: rgb(127, 55, 55);
+  border: none;
+}
+
+textarea{
+  font-size: large;
+  color: rgb(190, 170, 170);
+  background-color: rgb(127, 55, 55);
+  border: none;
+}
+
 .hero {
   @media screen and (max-width: 767px) {
     max-width: 536px;

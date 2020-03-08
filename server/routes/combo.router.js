@@ -16,6 +16,23 @@ router.get('/', (req, res) => {
       });
 });
 
+// return specific movie genres connections
+router.get('/specific/:id', (req, res) => {
+  console.log("in server /combo/GET", Number(req.params.id));
+    const queryText = `SELECT "genres"."name", "movies_genres"."id" FROM "genres" 
+    JOIN "movies_genres" ON "movies_genres"."genres_id" = "genres"."id" 
+    JOIN "movies" ON "movies_genres"."movies_id" = "movies"."id"
+    WHERE "movies"."id" = $1;`;
+  pool.query(queryText, [Number(req.params.id)])
+      .then( (result) => {
+          res.send(result.rows);
+      })
+      .catch( (error) => {
+          console.log(`Error on specific query ${error}`);
+          res.sendStatus(500);
+      });
+});
+
 // add a new genre connection
 router.post('/', (req, res) => {
     console.log('IN /combo/POST  WITH:', req.body, req.params);
@@ -35,14 +52,14 @@ router.post('/', (req, res) => {
 // delete a genre connection
 router.delete('/:id', (req, res) => {
   console.log("in server /combo/DELETE with: ", req.params.id);
-//    const queryText = `DELETE FROM "genres" WHERE id=$1`;
-//   pool.query(queryText, [Number(req.params.id)])
-//   .then(() => {
-//     res.sendStatus(200);
-//   }).catch(err => {
-//       console.log("Error deleting genre", err);
-//       res.sendStatus(500);
-//     });
+   const queryText = `DELETE FROM "movies_genres" WHERE id=$1`;
+  pool.query(queryText, [Number(req.params.id)])
+  .then(() => {
+    res.sendStatus(200);
+  }).catch(err => {
+      console.log("Error deleting movie to genre link", err);
+      res.sendStatus(500);
+    });
 });
 
 //link a genre and movie together

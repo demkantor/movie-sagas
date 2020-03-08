@@ -22,6 +22,8 @@ function* rootSaga() {
     yield takeEvery('REMOVE_GENRE', removeGenre);
     yield takeEvery('ATTACH_GENRE', attachGenre);
     yield takeEvery('GET_COMBOS', getCombos);
+    yield takeEvery('REMOVE_COMBO', removeCombo);
+    yield takeEvery('GET_SPECIFICS', getSpecifics);
 
 }
 
@@ -41,6 +43,13 @@ function* getCombos(){
     const comboList = yield axios.get('/combo');
     console.log('this saga came from /combo/GET bringing: ', comboList.data)
     yield put({type: 'SET_COMBOS', payload: comboList.data})
+}
+
+function* getSpecifics(id){
+    console.log('got the specific id:', id)
+    const specificList = yield axios.get(`/combo/specific/${id.payload}`);
+    console.log('this saga came from /combo/specific/GET bringing: ', specificList.data)
+    yield put({type: 'SET_SPECIFICS', payload: specificList.data})
 }
 
 function* editTitle(edit){
@@ -83,11 +92,21 @@ function* removeGenre(remove) {
     }
 }
 
+function* removeCombo(remove) {
+    console.log("in saga /combo/delete with: ", remove.payload);
+    try {
+        yield axios.delete(`/combo/${remove.payload}`);
+        // yield put({type: 'GET_SPECIFICS'})
+    } catch(error){
+        console.log(error);
+    }
+}
+
 function* attachGenre(edit){
     console.log('this saga came from /combo/PUT, sending: ', edit.payload.newGenreId.sendGenre.newGenre, "and", edit.payload.newGenreId.sendMovie);
   try {
     yield axios.post(`/combo`, edit.payload);
-    yield put({type: 'GET_COMBOS'});
+    // yield put({type: 'GET_SPECIFICS'});
   } catch (error) {
     console.log(error);
   }
@@ -125,12 +144,22 @@ const comboReducer = (state = [], action) => {
     }
 }
 
+const specificReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_SPECIFICS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movieReducer,
         genreReducer,
-        comboReducer
+        comboReducer,
+        specificReducer
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

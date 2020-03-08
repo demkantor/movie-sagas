@@ -18,6 +18,7 @@ class MovieEdit extends Component {
     componentDidMount=()=>{
       this.getGenres();
       this.getConnections();
+      this.getSpecifics();
     }
   
     getGenres=()=>{
@@ -32,6 +33,15 @@ class MovieEdit extends Component {
       this.props.history.push('/')
     }
 
+    removeMe=(row)=>{
+      this.props.dispatch({type: 'REMOVE_COMBO', payload: row});
+      window.location.reload();
+    }
+
+    getSpecifics=()=>{
+      this.props.dispatch({type: 'GET_SPECIFICS', payload: this.props.location.state.id});
+    }
+
     addNewGenre=()=>{
       console.log('add new genre:', this.state.select, this.props.location.state.id);
       this.props.dispatch({
@@ -43,6 +53,7 @@ class MovieEdit extends Component {
           }
         }
       });
+      window.location.reload();
     }
     
     editThis=(text, id)=>{
@@ -113,10 +124,9 @@ class MovieEdit extends Component {
               </thead>
               {this.props.reduxState.comboReducer && (
                 <tbody>
-              {this.props.reduxState.comboReducer.map(genre => (
+              {this.props.reduxState.specificReducer.map(genre => (
                   <tr className="genreList" key={genre.id}>
-                    <td>{genre.movies_id}</td>
-                    <td>{genre.genres_id}</td>
+                    <td>{genre.name}</td>
                     <td><button className="removeButton" onClick={()=>this.removeMe(genre.id)}>remove</button></td>
                   </tr>
                   ))}
