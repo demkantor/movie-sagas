@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../App/App.css';
 import {Link} from 'react-router-dom';
-import MovieEdit from '../MovieEdit/MovieEdit';
+
 
 class MovieDetail extends Component {
   

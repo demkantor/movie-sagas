@@ -4,6 +4,7 @@ import MovieDisplay from '../MovieDisplay/MovieDisplay';
 import Header from '../Header/Header';
 import MovieEdit from '../MovieEdit/MovieEdit';
 import MovieDetail from '../MovieDetail/MovieDetail';
+import Admin from'../Admin/Admin'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
@@ -22,6 +23,7 @@ class App extends Component {
           <Route exact path="/" component={MovieDisplay}/>
           <Route path="/edit" component={MovieEdit}/>
           <Route path="/details" component={MovieDetail}/>
+          <Route path="/admin" component={Admin}/>
         </Router>
       </div>
     );

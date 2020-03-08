@@ -95,6 +95,19 @@ input:focus {
   margin-left: 10px;
 }
 
+.adminIcon{
+  position: absolute;
+  width: 40px;
+  top: 20px;
+  right: 40px;
+  opacity: .3;
+}
+
+.adminIcon:hover{
+  opacity: 1;
+  width: 50px;
+}
+
 .hero {
   @media screen and (max-width: 767px) {
     max-width: 536px;
