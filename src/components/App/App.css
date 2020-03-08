@@ -61,9 +61,17 @@ button:hover{
   margin-left: 20px;
 }
 
+.homeButton:hover{
+  transform: scale(1.1);
+}
+
 .favButton{
   width: 185px;
   height: 58px;
+}
+
+.removeButton{
+  margin: auto;
 }
 
 .title{
@@ -89,7 +97,6 @@ button:hover{
 .description{
   font-size: larger;
   padding: 20px;
-  
 }
 
 .descriptionEdit{
@@ -118,6 +125,10 @@ input:focus {
   margin-left: 20px;
 }
 
+textarea{
+margin: 20px;
+}
+
 .adminIcon{
   position: absolute;
   width: 40px;
@@ -129,6 +140,28 @@ input:focus {
 .adminIcon:hover{
   opacity: 1;
   width: 50px;
+}
+
+.genreList{
+  font-size: large;
+  margin-left: 20px;
+}
+
+.admin{
+  margin: 0px;
+  width: 80%;
+}
+
+.adminColumnOne{
+  float: left;
+  margin: 0px;
+  width: 40%;
+}
+
+.adminColumnTwo{
+  float: left;
+  margin: 0px;
+  width: 60%;
 }
 
 .hero {

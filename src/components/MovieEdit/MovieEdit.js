@@ -69,9 +69,9 @@ class MovieEdit extends Component {
             Submit Edit
         </button>
         <form className="edit">
-            <input placeholder="Edit Title" onChange={(event) => this.handleChangeFor('title', event)}/>
+            <textarea placeholder={this.props.location.state.title} onChange={(event) => this.handleChangeFor('title', event)}/>
                  <br/>
-            <input className="largeEdit" placeholder="Edit Description" onChange={(event) => this.handleChangeFor('description', event)}/>
+            <textarea className="largeEdit" placeholder={this.props.location.state.description} onChange={(event) => this.handleChangeFor('description', event)}/>
        </form>
       </div>
     );
