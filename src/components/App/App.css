@@ -37,6 +37,11 @@ html, body {
   margin-left: 10px;
 }
 
+.moreDetails:hover{
+  opacity: .8;
+  transform: scale(1.1);
+}
+
 button{
   /* font-family: 'Patua One', sans-serif; */
   letter-spacing: .1em;
@@ -54,6 +59,11 @@ button:hover{
 
 .homeButton{
   margin-left: 20px;
+}
+
+.favButton{
+  width: 185px;
+  height: 58px;
 }
 
 .title{

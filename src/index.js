@@ -17,12 +17,19 @@ function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovie);
     yield takeEvery('EDIT_TITLE', editTitle);
     yield takeEvery('EDIT_FAV', editFav);
+    yield takeEvery('GET_GENRES', getGenres);
 }
 
 function* getMovie(){
     const filmList = yield axios.get('/movie');
     console.log('this saga came from movie/GET bringing: ', filmList.data)
     yield put({type: 'SET_MOVIES', payload: filmList.data})
+}
+
+function* getGenres(){
+    const genreList = yield axios.get('/genre');
+    console.log('this saga came from genre/GET bringing: ', genreList.data)
+    yield put({type: 'SET_GENRES', payload: genreList.data})
 }
 
 function* editTitle(edit){

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import '../App/App.css';
 import {connect} from 'react-redux';
 
+
+
 class MovieDisplay extends Component {
 
   componentDidMount = () => {
@@ -55,24 +57,18 @@ class MovieDisplay extends Component {
               <div className="display">
                 {this.props.reduxState.movieReducer.map(movie => (
                   <div className="poster" key={movie.id}>
-                    <img alt="poster" src={movie.poster} width="185px" height="275px"/>
+                    <img className="moreDetails" alt="poster" src={movie.poster} onClick={() => this.moreInfo(movie)} width="185px" height="275px"/>
                     <br />
                     <div className="titleT">
                       {/* {movie.title} */}
-                      <br/>
-                      <br />
-                      <button onClick={() => this.moreInfo(movie)}>
-                        More Information
-                      </button>
-                      <br />
                       <br></br>
                         {movie.favorited === false &&
-                        <button onClick={() => this.addFav(movie.id)}>
+                        <button className="favButton" onClick={() => this.addFav(movie.id)}>
                           Add To Favorites
                         </button>
                         }
                         {movie.favorited === true &&
-                        <button onClick={() => this.removeFav(movie.id)}>
+                        <button className="favButton" onClick={() => this.removeFav(movie.id)}>
                           Remove From Favorites
                         </button>
                         }
