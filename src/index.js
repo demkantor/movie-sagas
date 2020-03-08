@@ -21,6 +21,7 @@ function* rootSaga() {
     yield takeEvery('ADD_GENRES', addGenres);
     yield takeEvery('REMOVE_GENRE', removeGenre);
     yield takeEvery('ATTACH_GENRE', attachGenre);
+    yield takeEvery('GET_COMBOS', getCombos);
 
 }
 
@@ -34,6 +35,12 @@ function* getGenres(){
     const genreList = yield axios.get('/genre');
     console.log('this saga came from genre/GET bringing: ', genreList.data)
     yield put({type: 'SET_GENRES', payload: genreList.data})
+}
+
+function* getCombos(){
+    const comboList = yield axios.get('/combo');
+    console.log('this saga came from /combo/GET bringing: ', comboList.data)
+    yield put({type: 'SET_COMBOS', payload: comboList.data})
 }
 
 function* editTitle(edit){
@@ -77,10 +84,10 @@ function* removeGenre(remove) {
 }
 
 function* attachGenre(edit){
-    console.log('this saga came from /genre/movies/PUT, sending: ', edit.payload.newGenreId.sendGenre.newGenre, "and", edit.payload.newGenreId.sendMovie);
+    console.log('this saga came from /combo/PUT, sending: ', edit.payload.newGenreId.sendGenre.newGenre, "and", edit.payload.newGenreId.sendMovie);
   try {
-    yield axios.put(`/genre/movies/${edit.payload.newGenreId.sendMovie}`, edit.payload);
-    yield put({type: 'GET_MOVIES'});
+    yield axios.post(`/combo`, edit.payload);
+    yield put({type: 'GET_COMBOS'});
   } catch (error) {
     console.log(error);
   }
@@ -109,11 +116,21 @@ const genreReducer = (state = [], action) => {
     }
 }
 
+const comboReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_COMBOS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movieReducer,
         genreReducer,
+        comboReducer
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

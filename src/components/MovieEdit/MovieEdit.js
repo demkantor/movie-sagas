@@ -17,10 +17,15 @@ class MovieEdit extends Component {
 
     componentDidMount=()=>{
       this.getGenres();
+      this.getConnections();
     }
   
     getGenres=()=>{
       this.props.dispatch({type: 'GET_GENRES'});
+    }
+
+    getConnections=()=>{
+      this.props.dispatch({type: 'GET_COMBOS'});
     }
 
     goHome=()=>{
@@ -102,10 +107,21 @@ class MovieEdit extends Component {
             <table className="genreList">
               <thead>
                 <tr>
-                  <th>Genre</th>
+                  <th>Genres</th>
                   <th></th>
                 </tr>
               </thead>
+              {this.props.reduxState.comboReducer && (
+                <tbody>
+              {this.props.reduxState.comboReducer.map(genre => (
+                  <tr className="genreList" key={genre.id}>
+                    <td>{genre.movies_id}</td>
+                    <td>{genre.genres_id}</td>
+                    <td><button className="removeButton" onClick={()=>this.removeMe(genre.id)}>remove</button></td>
+                  </tr>
+                  ))}
+                </tbody>
+                )}
             </table>
           </div>
         </div>
