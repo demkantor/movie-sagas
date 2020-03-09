@@ -77,7 +77,7 @@ class Admin extends Component {
              Add Genre
             </button>
           </form>
-          <img alt="hal" src="images/hal.jpg" width="700px"/>
+          <img className="hal" alt="hal" src="images/hal.jpg" width="700px"/>
         </div>
       </div>
     );

@@ -249,3 +249,92 @@ textarea{
 .rightButton:hover{
   transform: scale(1.2);
 }
+
+@media only screen and (max-width: 500px) {
+  .display{
+    display: inline-block;
+    margin: auto;
+    overflow: auto;
+    bottom: auto;
+    position: relative;
+    margin-left: 25vw;
+  }
+
+  .heroImage{
+    visibility: hidden;
+    display: none;
+    z-index: 1;
+  }
+  .adminIcon{
+    right: 8px;
+  }
+
+  .leftButton{
+    visibility: hidden;
+  }
+  .rightButton{
+    visibility: hidden;
+  }
+
+  .adminColumnOne{
+    float: initial;
+    margin: auto;
+    margin-left: 10vw;
+  }
+
+  .adminColumnTwo{
+    margin: auto;
+    margin-left: 5vw;
+  }
+
+  .hal{
+    max-width: 90vw;
+    margin: auto;
+  }
+
+  .title{
+    text-align: center;
+    margin: unset;
+  }
+
+  .titleDetail{
+    margin: unset;
+    margin-left: 25vw;
+  }
+  .playButton{
+    margin: 25vw;
+    position: relative;
+    transform: scale(2);
+  }
+
+  .description{
+    padding: unset;
+    z-index: 4;
+  }
+
+  .editColumnOne{
+    float: initial;
+    margin-left: 20vw;
+    width: 50%;
+  }
+
+  .editColumnTwo{
+    float: inherit;
+    margin-left: 20vw;
+  }
+
+  .editColumnThree{
+    float: inherit;
+    padding: 5vw;
+    margin-left: 20vw;
+  }
+
+  .editBelow{
+    float: inherit;
+    padding: 5vw;
+  }
+
+  textarea{
+    max-width: 80vw;
+  }
+} 
