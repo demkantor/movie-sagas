@@ -38,6 +38,23 @@ class MovieDisplay extends Component {
     console.log("in removeFav", thisOne);
     this.props.dispatch({ type: "EDIT_FAV", payload: {id: thisOne, bool: false }});
   };
+
+  scrollTime=(direction)=>{
+    console.log('moving', direction);
+    let container = document.getElementsByClassName('display')[0]
+    let scrollAmount = 0;
+    let slideTimer = setInterval(function(){
+        if(direction === 'left'){
+            container.scrollLeft -= 400;
+        } else {
+            container.scrollLeft += 400;
+        }
+        scrollAmount += 400;
+        if(scrollAmount >= 500){
+            window.clearInterval(slideTimer);
+        }
+    }, 1);
+  }
   
   render() {
     return (
@@ -79,6 +96,8 @@ class MovieDisplay extends Component {
               </div>
             )}
           </div>
+          <img alt="left arrow" src="/images/left.png" className="leftButton" onClick={(event)=>this.scrollTime('left', event)}/>
+          <img alt="right arrow" src="/images/right.png" className="rightButton" onClick={(event)=>this.scrollTime('right', event)}/>
       </div>
     );
   }
