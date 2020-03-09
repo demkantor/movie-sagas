@@ -4,7 +4,7 @@ const router = express.Router();
 
 // return all movies
 router.get('/', (req, res) => {
-  console.log("in server /movie/GET");
+  //console.log("in server /movie/GET");
   const queryText = `SELECT * FROM movies ORDER BY title ASC`;
   pool.query(queryText)
       .then( (result) => {
@@ -16,44 +16,12 @@ router.get('/', (req, res) => {
       });
 });
 
-// add a new favorite 
-router.post('/', (req, res) => {
-  console.log("in server post with: ", req.body);
-//   const newFavorite = req.body;
-//   const queryText = `INSERT INTO favorites ("title", "url", "category_id")
-//                     VALUES ($1, $2, $3)`;
-//   const queryValues = [
-//     newFavorite.sendTitle,
-//     newFavorite.sendUrl,
-//     newFavorite.sendCat
-//   ];
-//   pool.query(queryText, queryValues)
-//     .then(() => { res.sendStatus(201); })
-//     .catch((err) => {
-//       console.log('Error completing SELECT favorite query', err);
-//       res.sendStatus(500);
-//     });
-});
-
-
-// delete a favorite
-router.delete('/:id', (req, res) => {
-  console.log("in server delete with: ", req.params.id);
-//   const queryText = "DELETE FROM favorites WHERE id=$1";
-//   pool.query(queryText, [req.params.id])
-//   .then(() => {
-//     res.sendStatus(200);
-//   }).catch(err => {
-//       console.log("Error deleting favorite", err);
-//       res.sendStatus(500);
-//     });
-});
-
+//change title and description of a movie
 router.put('/title/:id', (req, res) => {
-  console.log('IN PUT TITLE WITH:', req.body, req.params);
-  console.log('r.b.change: ', req.body.change.edits.title, "r.p.id :", req.params.id);
+  //console.log('IN PUT TITLE WITH:', req.body, req.params);
+  //console.log('r.b.change: ', req.body.change.edits.title, "r.p.id :", req.params.id);
   const queryText = `UPDATE "movies" SET "title" =$1, "description" =$2 WHERE id=$3;`;
-   const queryValues = [req.body.change.edits.title, req.body.change.edits.description, req.params.id]
+  const queryValues = [req.body.change.edits.title, req.body.change.edits.description, req.params.id]
   pool.query(queryText, queryValues)
     .then(() => {
       res.sendStatus(200);
@@ -64,8 +32,9 @@ router.put('/title/:id', (req, res) => {
     });
 })
 
+//add or remove movie from favorites
 router.put('/fav/:id', (req, res) => {
-  console.log('IN PUT TITLE WITH:', req.body, req.params.id);
+  //console.log('IN PUT TITLE WITH:', req.body, req.params.id);
    const queryText = `UPDATE "movies" SET "favorited" =$1 WHERE id=$2;`;
     const queryValues = [req.body.bool, req.body.id]
   pool.query(queryText, queryValues)
