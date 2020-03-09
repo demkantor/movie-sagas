@@ -16,6 +16,7 @@ class Admin extends Component {
     this.getGenres();
   }
 
+  //gets all genres from database
   getGenres=()=>{
     this.props.dispatch({type: 'GET_GENRES'});
   }
@@ -24,6 +25,7 @@ class Admin extends Component {
     this.props.history.push('/');
   }
 
+  //removes genre from database and DOM
   removeMe=(id)=>{
     this.props.dispatch({type: 'REMOVE_GENRE', payload: id});
   }
@@ -34,13 +36,13 @@ class Admin extends Component {
     })
   }
 
+  //takes input, saves new genre to database, displays to DOM
   addGenre=(event)=>{
     event.preventDefault();
     this.props.dispatch({type: 'ADD_GENRES', payload: this.state});
   }
 
   render() {
-    // console.log('in admin with genres: ', this.props.reduxState.genreReducer);
     return (
       <div className="admin">
         <button className="homeButton" onClick={this.goHome}>

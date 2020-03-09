@@ -8,11 +8,11 @@ import axios from 'axios'
 // Provider allows us to use redux within our react app
 import {Provider} from 'react-redux';
 import logger from 'redux-logger';
-// Import saga middleware
+// Imported saga middleware
 import {takeEvery, put} from "redux-saga/effects";
 import createSagaMiddleware from 'redux-saga';
 
-// Create the rootSaga generator function
+// these sagas take the dispatch and runs them before they get to the reducers
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovie);
     yield takeEvery('EDIT_TITLE', editTitle);
@@ -29,31 +29,31 @@ function* rootSaga() {
 
 function* getMovie(){
     const filmList = yield axios.get('/movie');
-    console.log('this saga came from movie/GET bringing: ', filmList.data)
+    //console.log('this saga came from movie/GET bringing: ', filmList.data)
     yield put({type: 'SET_MOVIES', payload: filmList.data})
 }
 
 function* getGenres(){
     const genreList = yield axios.get('/genre');
-    console.log('this saga came from genre/GET bringing: ', genreList.data)
+    //console.log('this saga came from genre/GET bringing: ', genreList.data)
     yield put({type: 'SET_GENRES', payload: genreList.data})
 }
 
 function* getCombos(){
     const comboList = yield axios.get('/combo');
-    console.log('this saga came from /combo/GET bringing: ', comboList.data)
+    //console.log('this saga came from /combo/GET bringing: ', comboList.data)
     yield put({type: 'SET_COMBOS', payload: comboList.data})
 }
 
 function* getSpecifics(id){
-    console.log('got the specific id:', id)
+    //console.log('got the specific id:', id)
     const specificList = yield axios.get(`/combo/specific/${id.payload}`);
-    console.log('this saga came from /combo/specific/GET bringing: ', specificList.data)
+    //console.log('this saga came from /combo/specific/GET bringing: ', specificList.data)
     yield put({type: 'SET_SPECIFICS', payload: specificList.data})
 }
 
 function* editTitle(edit){
-    console.log('this saga came from movie/title/PUT, sending: ', edit.payload);
+    //console.log('this saga came from movie/title/PUT, sending: ', edit.payload);
   try {
     yield axios.put(`/movie/title/${edit.payload.sendId}`, edit.payload);
     yield put({type: 'GET_MOVIES'});
@@ -63,7 +63,7 @@ function* editTitle(edit){
 }
 
 function* editFav(edit){
-    console.log('this saga came from movie/fav/PUT, sending: ', edit.payload);
+    //console.log('this saga came from movie/fav/PUT, sending: ', edit.payload);
   try {
     yield axios.put(`/movie/fav/${edit.payload}`, edit.payload);
     yield put({type: 'GET_MOVIES'});
@@ -73,7 +73,7 @@ function* editFav(edit){
 }
 
 function* addGenres(genre) {
-    console.log('in saga /genre POST', genre.payload);
+    //console.log('in saga /genre POST', genre.payload);
     try {
         yield axios.post('/genre', genre.payload);
         yield put({type: 'GET_GENRES'})

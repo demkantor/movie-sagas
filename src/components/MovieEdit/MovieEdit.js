@@ -14,7 +14,7 @@ class MovieEdit extends Component {
           newGenre: 1
         }
     }
-
+    //gets redux states ready on mount. genres and movie-genre connections
     componentDidMount=()=>{
       this.getGenres();
       this.getConnections();
@@ -33,17 +33,20 @@ class MovieEdit extends Component {
       this.props.history.push('/')
     }
 
+    //removes genre from this movie
     removeMe=(row)=>{
       this.props.dispatch({type: 'REMOVE_COMBO', payload: row});
       this.getSpecifics();
     }
 
+    //gets and displays genre categories for this movie
     getSpecifics=()=>{
       this.props.dispatch({type: 'GET_SPECIFICS', payload: this.props.location.state.id});
     }
 
+    //use dropdown select to add new genre category to this movie
     addNewGenre=()=>{
-      console.log('add new genre:', this.state.select, this.props.location.state.id);
+      //console.log('add new genre:', this.state.select, this.props.location.state.id);
       this.props.dispatch({
         type: 'ATTACH_GENRE', 
         payload: {
@@ -55,7 +58,8 @@ class MovieEdit extends Component {
       });
       this.getSpecifics();
     }
-    
+
+    //uses sweet alerts to confirm the users edit to title and description before proceeding
     editThis=(text, id)=>{
         swal({
           title: "Are you sure? Once edit is submitted it is forever!",
@@ -89,7 +93,7 @@ class MovieEdit extends Component {
     }
 
     handleChangeSelect=(propertyName, event)=>{
-        console.log(propertyName, event.target.value);
+        //console.log(propertyName, event.target.value);
         this.setState({
             ...this.state,
             select:{

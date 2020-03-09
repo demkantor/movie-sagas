@@ -8,6 +8,7 @@ class MovieDetail extends Component {
       this.props.history.push('/')
     }
 
+    //sends props to /edit 
     editThis = (movie) => {
         this.props.history.push({
           pathname: '/edit',
@@ -20,10 +21,13 @@ class MovieDetail extends Component {
           }
         });
       };
-    
+
+      
   render() {
-      console.log('in details', this.props.location.state)
-    return (
+      //console.log('in details', this.props.location.state)
+      const movie = "https://www.youtube-nocookie.com/embed/" + this.props.location.state.video;
+    
+      return (
       <div className="moviedetail">
         <button  className="homeButton" onClick={this.goHome}>
             Home
@@ -31,6 +35,8 @@ class MovieDetail extends Component {
         <button onClick={() => this.editThis(this.props.location.state)}>
             Edit Details
         </button>
+        <iframe className="playButton" width="155" height="125" title={this.props.location.state.title} src={movie} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+        {/* <img className="playButton" alt="play" src='/images/play.png'/> */}
         {this.props.location.state.favorited &&
           <img className="favorited" alt="star" src='/images/star.png'/>
           }

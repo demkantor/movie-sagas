@@ -199,7 +199,18 @@ margin: 20px;
 
 .favorited{
   position: absolute;
-  margin-left: 150px;
+  margin-left: 240px;
+  margin-top: 25px;
+}
+
+.playButton{
+  position: absolute;
+  margin-left: 55px;
+}
+
+.playButton:hover{
+  transform: scale(2);
+  animation: ease-in;
 }
 
 select{

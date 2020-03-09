@@ -14,8 +14,9 @@ class MovieDisplay extends Component {
     this.props.dispatch({ type: "GET_MOVIES" });
   };
 
+  //sends props to /details
   moreInfo = (movie) => {
-    console.log("in moreInfo", movie);
+    //console.log("in moreInfo", movie);
     this.props.history.push({
       pathname: '/details',
       state: {
@@ -24,23 +25,27 @@ class MovieDisplay extends Component {
         poster: movie.poster,
         hero: movie.hero_poster,
         description: movie.description,
-        favorited: movie.favorited
+        favorited: movie.favorited,
+        video: movie.youtube
       }
     });
   };
 
+  //adds movie to favorites
   addFav = (thisOne) => {
-    console.log("in addFav", thisOne);
+    //console.log("in addFav", thisOne);
     this.props.dispatch({ type: "EDIT_FAV", payload: {id: thisOne, bool: true }});
   };
  
+  //removes movie from favorites
   removeFav = (thisOne) => {
-    console.log("in removeFav", thisOne);
+    //console.log("in removeFav", thisOne);
     this.props.dispatch({ type: "EDIT_FAV", payload: {id: thisOne, bool: false }});
   };
 
+  //buttons for controlling left and right scroll action
   scrollTime=(direction)=>{
-    console.log('moving', direction);
+    //console.log('moving', direction);
     let container = document.getElementsByClassName('display')[0]
     let scrollAmount = 0;
     let slideTimer = setInterval(function(){

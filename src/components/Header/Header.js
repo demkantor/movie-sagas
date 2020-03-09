@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 
 class Header extends Component {
   
-
+  //uses sweet alert to open box for login (camera) and password (action) to get into admin view
   adminLogIn=(history)=>{
     swal({
       content: {
