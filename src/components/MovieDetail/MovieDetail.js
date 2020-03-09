@@ -38,7 +38,7 @@ class MovieDetail extends Component {
         <iframe className="playButton" width="155" height="125" title={this.props.location.state.title} src={movie} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe>
         {/* <img className="playButton" alt="play" src='/images/play.png'/> */}
         {this.props.location.state.favorited &&
-          <img className="favorited" alt="star" src='/images/star.png'/>
+          <img className="favorited" alt="star" src='/images/icons/star.png'/>
           }
         <h1 className="titleDetail">{this.props.location.state.title}</h1>
         <div className="heroDisplay" key={this.props.location.state.id}>

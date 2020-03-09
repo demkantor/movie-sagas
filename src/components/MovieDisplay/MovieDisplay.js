@@ -101,8 +101,8 @@ class MovieDisplay extends Component {
               </div>
             )}
           </div>
-          <img alt="left arrow" src="/images/left.png" className="leftButton" onClick={(event)=>this.scrollTime('left', event)}/>
-          <img alt="right arrow" src="/images/right.png" className="rightButton" onClick={(event)=>this.scrollTime('right', event)}/>
+          <img alt="left arrow" src="/images/icons/left.png" className="leftButton" onClick={(event)=>this.scrollTime('left', event)}/>
+          <img alt="right arrow" src="/images/icons/right.png" className="rightButton" onClick={(event)=>this.scrollTime('right', event)}/>
       </div>
     );
   }

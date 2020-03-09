@@ -17,7 +17,7 @@ A place for users to see movie descriptions, previews and more!
 Uniquely styled and responsive to fit a mobile device or larger screen.
 
 ## Screen Shot
-![Screenshot](/public/images/screenshot.png?raw=true "Welcome Screen")
+![Screenshot](/public/images/screenshots/screenshot.png?raw=true "Welcome Screen")
 
 ### Prerequisites
 
@@ -36,7 +36,7 @@ database
 3. Run `npm run server` in your terminal
 4. Run `npm run client` in another terminal
 5. Setup database as outlined in sql file, should look something like this
-![Database](/public/images/database.png?raw=true "database setup")
+![Database](/public/images/screenshots/database.png?raw=true "database setup")
 
 ## Usage
 Netflix lookalike that searches movies from a database.

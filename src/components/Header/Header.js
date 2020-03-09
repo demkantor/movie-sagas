@@ -43,7 +43,7 @@ class Header extends Component {
     return (
       <div className="header">
        <span><h1>Next Flicks</h1>
-        <img src="/images/admin.png" alt="admin" className="adminIcon" onClick={()=>this.adminLogIn(this.props.history)} />
+        <img src="/images/icons/admin.png" alt="admin" className="adminIcon" onClick={()=>this.adminLogIn(this.props.history)} />
         </span> 
       </div>
     );
