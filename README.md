@@ -45,7 +45,7 @@ Users can click on a movie poster to get more details including a second image, 
 Admin page can be found by clinking icon in upper right hand corner. login is: camera, password is: action
 Admin page will allow user to add or remove genre options
 feel free to test it out via the link below!
-https://daily-feedback-app.herokuapp.com/#/
+https://nextflicks.herokuapp.com/
 
 ## Built With
 React
